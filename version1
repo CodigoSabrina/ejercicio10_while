@@ -1,0 +1,39 @@
+ public static void main(String[] args) {
+        // TODO code application logic here
+        /*
+        10. Crea un programa que muestre las cifras que tiene un número entero positivo separadas por
+        un espacio .
+        Pista: se puede hacer dividiendo varias veces entre 10, hasta que el valor divisor sea menor a
+        10 usando un bucle while.
+        */
+        
+        Scanner entrada = new Scanner (System.in);
+        int numeroIntroducido, divisor = 10;
+        
+        System.out.print("Introduce un numero positivo: ");
+        numeroIntroducido = entrada.nextInt();
+        
+        /* Necesito que el numero divisor sea del mismo tamaño en cuanto a digitos al numero introducido, por lo que 
+        mientras que el cociente de ambos numeros sea mayor que 10, necesito multiplicar mi divisor por 10. De esta forma,
+        si introducen un 10 o menos, se salta este bucle. */
+        
+        while ( numeroIntroducido / divisor > 10 )
+        {
+            divisor *= 10;
+        }
+        
+        /* Ahora el divisor tiene tantos digitos como el numero introducido. Mientras que el divisor sea mayor o igual que
+        10, se dará el siguiente bucle. */
+        while ( divisor >= 10 )
+        {
+            if ( numeroIntroducido / divisor > 0) // Esto evita que imprima un 0 en caso de ser numero de 1 solo digito
+            {
+                System.out.printf("%d ", ( numeroIntroducido / divisor ));
+            }
+            numeroIntroducido %= divisor; // Me guarda el resto de la misma operación
+            divisor /= 10; // Le quito un 0 al divisor para que sigan teniendo el mismo tamaño
+        }
+        
+        System.out.printf("%d\n", numeroIntroducido); /* Me imprime el numero que me falta. Aquí está almacenado
+        El resto de la ultima operación, es decir, el último dígito que necesitamos.*/
+    }
